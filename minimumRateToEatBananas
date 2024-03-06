@@ -1,0 +1,45 @@
+
+#include <bits/stdc++.h>
+
+int maxi(vector<int>& v)
+{
+int n=v.size();
+ int maxm = INT_MIN;
+for(int i=0;i<n;i++)
+{
+if(v[i]>maxm)
+maxm=v[i];
+}
+return maxm;
+}
+
+int calchours(vector<int> &v,int mid)
+{
+int totalh=0;
+for(int i=0;i<v.size();i++)
+{
+totalh+=ceil((double)(v[i])/(double)(mid));
+}
+return totalh;
+}
+
+
+int minimumRateToEatBananas(vector<int> v, int h) {
+    // Write Your Code Here
+int low=1,high=maxi(v);
+while(low<=high)
+{
+int mid=low+(high-low)/2;
+int tothours=calchours(v,mid);
+if(tothours<=h)
+{
+high=mid-1;
+
+}
+else
+{
+low=mid+1;
+}
+}
+return low;
+}
